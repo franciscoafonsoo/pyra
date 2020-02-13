@@ -18,5 +18,5 @@ should be easy to fork this project and adapted it to another CI system (or abst
 
 ## *THIS IS A WORK IN PROGRESS*
 
-This does the work, but don't expect many flexibility at this point. You are welcome to contribuite
+This does the job, but don't expect many flexibility at this point. You are welcome to contribuite
 by opening a issue or a Pull Request. Any code should be formatted with Black.
