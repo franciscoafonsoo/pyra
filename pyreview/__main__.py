@@ -52,7 +52,6 @@ def main():
     project = os.getenv("HEROKU_DEV_NAME")
     version = os.getenv("BITBUCKET_COMMIT")
     heroku_pipeline_name = os.getenv("HEROKU_PIPELINE_NAME")
-    app_name = os.getenv("HEROKU_APP_CONFIG_VARS")
 
     headers = {
         "Accept": "application/vnd.heroku+json; version=3",
@@ -61,8 +60,7 @@ def main():
 
     pipeline = get_pipeline_id(base_url, headers, heroku_pipeline_name)
     source_blob_url = create_source_blob(base_url, headers, base_dir, project, version)
-    envs = filter_env_vars("CI_") + get_config_vars(base_url, headers, app_name)
-    import pdb; pdb.set_trace()
+    envs = {**filter_env_vars("CI_"), **get_config_vars(base_url, headers, project)}
 
     data = {
         "branch": branch,
