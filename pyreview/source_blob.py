@@ -13,12 +13,9 @@ def create_archive(path, tag):
     """
     name = f"source_blob_{tag}.tar.gz"
 
-    print("Zipping the project...")
     with tarfile.open(name=name, mode="x:gz") as tar:
         tar.add(path, recursive=True, arcname=".")
 
-    print("Done!")
-    print()
     return name
 
 
@@ -40,12 +37,9 @@ def create_source_blob(base_url, headers, base_dir, project_name, version):
 
     source_blob_filename = create_archive(base_dir, version)
 
-    print("Uploading zipped project...")
     res = requests.put(
         put_url, headers={"Content-Type": ""}, data=open(source_blob_filename, "rb")
     )
     res.raise_for_status()
 
-    print("Done!")
-    print()
     return get_url

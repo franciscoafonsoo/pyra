@@ -62,6 +62,7 @@ def main():
     pipeline = get_pipeline_id(base_url, headers, heroku_pipeline_name)
     source_blob_url = create_source_blob(base_url, headers, base_dir, project, version)
     envs = filter_env_vars("CI_") + get_config_vars(base_url, headers, app_name)
+    import pdb; pdb.set_trace()
 
     data = {
         "branch": branch,
