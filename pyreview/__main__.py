@@ -6,14 +6,6 @@ def main():
     """
     Tool to deploy a Heroku Review App in Bitbucket Pipelines.
 
-
-    api_key = os.getenv("HEROKU_API_KEY")
-    branch = os.getenv("BITBUCKET_BRANCH")
-    base_url = "https://api.heroku.com"
-    project = os.getenv("HEROKU_DEV_NAME")
-    heroku_pipeline_name = os.getenv("HEROKU_PIPELINE_NAME")
-    version = os.getenv("BITBUCKET_COMMIT")
-
     Environment Variables used from Bitbucket Pipelines:
         - BITBUCKET_COMMIT: commit hash to be used as the deploy version
         - BITBUCKET_BRANCH: git branch to be used as project name
@@ -39,7 +31,7 @@ def main():
     from .create_review_app import create_review_app
     from .pipeline import get_pipeline_id
     from .source_blob import create_source_blob
-    from .utils import filter_env_vars, get_config_vars
+    from .utils import filter_env_vars
 
     base_dir = Path.cwd()
     env_path = base_dir / ".env"
@@ -60,7 +52,7 @@ def main():
 
     pipeline = get_pipeline_id(base_url, headers, heroku_pipeline_name)
     source_blob_url = create_source_blob(base_url, headers, base_dir, project, version)
-    envs = {**filter_env_vars("CI_"), **get_config_vars(base_url, headers, project)}
+    envs = filter_env_vars("CI_")
 
     data = {
         "branch": branch,
