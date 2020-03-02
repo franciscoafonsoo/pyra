@@ -1,0 +1,10 @@
+httpx
+python-dotenv
+pre-commit
+
+flake8
+black
+
+setuptools
+wheel
+twine
