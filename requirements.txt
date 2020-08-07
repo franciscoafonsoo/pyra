@@ -1,5 +1,5 @@
 requests==2.24.0
-python-dotenv==0.11.0
+python-dotenv==0.14.0
 pre-commit==2.6.0
 
 flake8==3.8.3
