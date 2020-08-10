@@ -1,21 +1,15 @@
-import tarfile
+import subprocess
 
 import requests
 
 
 def create_archive(path, tag):
-    """
-    create the artifact to upload to Heroku Source API
+    """ create the artifact to upload to Heroku Source API """
 
-    Notes:
-        - recursive=True is the default
-        - consult tar.add() filter kwarg for excluding files and paths
-    """
     name = f"source_blob_{tag}.tar.gz"
 
     print("Zipping the project...")
-    with tarfile.open(name=name, mode="x:gz") as tar:
-        tar.add(path, recursive=True, arcname=".")
+    subprocess.run(["git", "archive", "-o", name, "HEAD"])
 
     print("Done!")
     print()
@@ -40,7 +34,7 @@ def create_source_blob(base_url, headers, base_dir, project_name, version):
 
     source_blob_filename = create_archive(base_dir, version)
 
-    print("Uploading zipped project... This can take a bit...")
+    print("Uploading zipped project...")
     res = requests.put(
         put_url, headers={"Content-Type": ""}, data=open(source_blob_filename, "rb")
     )
