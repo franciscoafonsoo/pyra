@@ -57,13 +57,14 @@ def main():
     data = {
         "branch": branch,
         "pipeline": pipeline,
-        "source_blob": {"url": source_blob_url, "version": version,},
+        "source_blob": {
+            "url": source_blob_url,
+            "version": version,
+        },
         "environment": envs,
     }
 
-    res = create_review_app(base_url, headers, data)
-
-    return res
+    create_review_app(base_url, headers, data)
 
 
 if __name__ == "__main__":  # pragma: no cover
