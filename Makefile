@@ -10,7 +10,6 @@ clean:
 	rm -rf dist/
 	rm -rf pyreview.egg-info
 
-
 pypi:
 	rm -rf build/
 	rm -rf dist/
