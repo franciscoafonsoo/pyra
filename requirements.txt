@@ -1,6 +1,6 @@
 # production
 requests==2.25.1
-python-dotenv==0.15.0
+python-dotenv==0.18.0
 
 # development
 pre-commit==2.12.0
